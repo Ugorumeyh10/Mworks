@@ -28,6 +28,13 @@ def _read(path: str) -> str:
     return Path(path).read_text(encoding="utf-8")
 
 
+def _pem(value: str, path: str) -> str:
+    raw = (value or "").strip()
+    if raw:
+        return raw.replace("\\n", "\n")
+    return _read(path)
+
+
 def issue_access_token(settings: Settings, *, sub: str, role: str) -> str:
     now = datetime.now(timezone.utc)
     payload = {
@@ -38,13 +45,13 @@ def issue_access_token(settings: Settings, *, sub: str, role: str) -> str:
         "iat": int(now.timestamp()),
         "exp": int((now + timedelta(minutes=settings.JWT_ACCESS_MINUTES)).timestamp()),
     }
-    return jwt.encode(payload, _read(settings.JWT_PRIVATE_KEY_PATH), algorithm="RS256")
+    return jwt.encode(payload, _pem(settings.JWT_PRIVATE_KEY, settings.JWT_PRIVATE_KEY_PATH), algorithm="RS256")
 
 
 def decode_access_token(settings: Settings, token: str) -> dict:
     return jwt.decode(
         token,
-        _read(settings.JWT_PUBLIC_KEY_PATH),
+        _pem(settings.JWT_PUBLIC_KEY, settings.JWT_PUBLIC_KEY_PATH),
         algorithms=ALGS,
         audience=settings.JWT_AUD,
         issuer=settings.JWT_ISS,

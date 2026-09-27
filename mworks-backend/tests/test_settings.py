@@ -1,4 +1,5 @@
 from app.config import Settings
+from app.security import _pem
 
 
 def test_sslmode_local_hosts():
@@ -9,6 +10,11 @@ def test_sslmode_local_hosts():
 
 def test_sslmode_remote_requires_tls():
     s = Settings(DB_HOST="pg.internal.bank.example", DB_SSLMODE="", APP_ENV="prod")
+    assert s.resolved_sslmode() == "require"
+
+
+def test_sslmode_pgbouncer_port_requires_tls():
+    s = Settings(DB_HOST="localhost", DB_PORT=6432, DB_SSLMODE="", APP_ENV="local")
     assert s.resolved_sslmode() == "require"
 
 
@@ -36,3 +42,10 @@ def test_unknown_env_does_not_crash(monkeypatch):
     monkeypatch.setenv("OPENSHIFT_BOGUS", "1")
     s = Settings()
     assert s.APP_NAME
+
+
+def test_jwt_pem_prefers_env_over_file(tmp_path):
+    key_file = tmp_path / "jwt.pem"
+    key_file.write_text("from-file", encoding="utf-8")
+    assert _pem("from-env", str(key_file)) == "from-env"
+    assert _pem("", str(key_file)) == "from-file"

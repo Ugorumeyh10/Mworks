@@ -15,3 +15,7 @@ secrets/
 dist/
 build/
 *.egg-info/
+.vercel
+.env*
+.agents/
+skills-lock.json

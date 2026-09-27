@@ -39,6 +39,10 @@ def s3_client(settings: Settings, *, public: bool = False):
 def ensure_bucket(settings: Settings) -> None:
     if settings.APP_ENV == "test":
         return
+    endpoint = (settings.S3_ENDPOINT or "").strip().lower()
+    if not (settings.S3_SECRET_KEY or "").strip() or "localhost" in endpoint or "127.0.0.1" in endpoint:
+        log.info("object storage skipped; uploads need a remote S3 endpoint")
+        return
     last_err = None
     for _attempt in range(8):
         try:

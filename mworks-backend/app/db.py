@@ -3,7 +3,7 @@ from collections.abc import Generator
 
 from sqlalchemy import create_engine, event, text
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
-from sqlalchemy.pool import StaticPool
+from sqlalchemy.pool import NullPool, StaticPool
 
 from app.config import Settings, get_settings
 
@@ -22,6 +22,9 @@ def _engine(settings: Settings):
         connect_args["check_same_thread"] = False
         kwargs["poolclass"] = StaticPool
         kwargs["pool_pre_ping"] = False
+    elif settings.APP_ENV not in {"local", "test"}:
+        # Serverless (Vercel): do not keep pooled sockets across freezes.
+        kwargs["poolclass"] = NullPool
     engine = create_engine(
         url,
         connect_args=connect_args,

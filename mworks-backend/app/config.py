@@ -32,6 +32,8 @@ class Settings(BaseSettings):
     JWT_AUD: str = "mworks-web"
     JWT_PRIVATE_KEY_PATH: str = "./secrets/jwt_private.pem"
     JWT_PUBLIC_KEY_PATH: str = "./secrets/jwt_public.pem"
+    JWT_PRIVATE_KEY: str = ""
+    JWT_PUBLIC_KEY: str = ""
     JWT_ACCESS_MINUTES: int = 15
     JWT_REFRESH_DAYS: int = 7
 
@@ -88,6 +90,8 @@ class Settings(BaseSettings):
         raw = (self.DB_SSLMODE or "").strip().lower()
         if raw:
             return raw
+        if int(self.DB_PORT) == 6432:
+            return "require"
         host = (self.DB_HOST or "").strip().lower()
         if host in _LOCAL_HOSTS:
             return "disable"
