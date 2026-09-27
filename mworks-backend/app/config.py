@@ -45,6 +45,7 @@ class Settings(BaseSettings):
     S3_ACCESS_KEY: str = "mworks"
     S3_SECRET_KEY: str = ""
     S3_REGION: str = "us-east-1"
+    CRON_SECRET: str = ""
 
     APP_PUBLIC_URL: str = "http://localhost:5173"
     PAYSTACK_SECRET_KEY: str = ""

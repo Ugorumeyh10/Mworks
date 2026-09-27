@@ -20,16 +20,30 @@ _ALLOWED_DOC = {
 _ALLOWED_EXT = {".pdf", ".docx", ".md", ".txt", ".xml", ".zip", ".mp4", ".webm"}
 
 
+def storage_configured(settings: Settings) -> bool:
+    secret = (settings.S3_SECRET_KEY or "").strip()
+    endpoint = (settings.S3_ENDPOINT or "").strip().lower()
+    if not secret or not endpoint:
+        return False
+    if "localhost" in endpoint or "127.0.0.1" in endpoint:
+        return settings.APP_ENV == "local"
+    return True
+
+
 def s3_client(settings: Settings, *, public: bool = False):
     endpoint = settings.s3_presign_endpoint() if public else settings.S3_ENDPOINT
+    region = (settings.S3_REGION or "us-east-1").strip() or "us-east-1"
+    if endpoint and "r2.cloudflarestorage.com" in endpoint.lower() and region == "us-east-1":
+        region = "auto"
     return boto3.client(
         "s3",
         endpoint_url=endpoint or None,
         aws_access_key_id=settings.S3_ACCESS_KEY,
         aws_secret_access_key=settings.S3_SECRET_KEY,
-        region_name=settings.S3_REGION,
+        region_name=region,
         config=Config(
             signature_version="s3v4",
+            s3={"addressing_style": "path"},
             request_checksum_calculation="when_required",
             response_checksum_validation="when_required",
         ),
@@ -39,12 +53,12 @@ def s3_client(settings: Settings, *, public: bool = False):
 def ensure_bucket(settings: Settings) -> None:
     if settings.APP_ENV == "test":
         return
-    endpoint = (settings.S3_ENDPOINT or "").strip().lower()
-    if not (settings.S3_SECRET_KEY or "").strip() or "localhost" in endpoint or "127.0.0.1" in endpoint:
+    if not storage_configured(settings):
         log.info("object storage skipped; uploads need a remote S3 endpoint")
         return
     last_err = None
-    for _attempt in range(8):
+    attempts = 2 if settings.APP_ENV not in {"local"} else 8
+    for _attempt in range(attempts):
         try:
             client = s3_client(settings)
             existing = {b["Name"] for b in client.list_buckets().get("Buckets", [])}

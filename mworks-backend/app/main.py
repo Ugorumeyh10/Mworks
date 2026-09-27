@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 from app.config import get_settings
 from app.db import Base, SessionLocal, engine, ensure_schema
 from app.errors import install_error_handlers
-from app.routers import assistant, auth, blog, feed, health, hire, interviewer, jobs, listings, messages, orders, trust
+from app.routers import assistant, auth, blog, cron, feed, health, hire, interviewer, jobs, listings, messages, orders, trust
 from app.seed import seed
 from app.storage import ensure_bucket
 
@@ -67,6 +67,7 @@ app.include_router(trust.router)
 app.include_router(hire.router)
 app.include_router(interviewer.router)
 app.include_router(blog.router)
+app.include_router(cron.router)
 
 
 @app.middleware("http")

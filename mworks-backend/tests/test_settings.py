@@ -1,5 +1,6 @@
 from app.config import Settings
 from app.security import _pem
+from app.storage import storage_configured
 
 
 def test_sslmode_local_hosts():
@@ -42,6 +43,13 @@ def test_unknown_env_does_not_crash(monkeypatch):
     monkeypatch.setenv("OPENSHIFT_BOGUS", "1")
     s = Settings()
     assert s.APP_NAME
+
+
+def test_storage_configured_skips_empty_and_localhost_in_prod():
+    assert not storage_configured(Settings(APP_ENV="prod", S3_SECRET_KEY="", S3_ENDPOINT="https://example.r2.cloudflarestorage.com"))
+    assert not storage_configured(Settings(APP_ENV="prod", S3_SECRET_KEY="secret", S3_ENDPOINT="http://localhost:9000"))
+    assert storage_configured(Settings(APP_ENV="local", S3_SECRET_KEY="secret", S3_ENDPOINT="http://localhost:9000"))
+    assert storage_configured(Settings(APP_ENV="prod", S3_SECRET_KEY="secret", S3_ENDPOINT="https://abc.r2.cloudflarestorage.com"))
 
 
 def test_jwt_pem_prefers_env_over_file(tmp_path):
