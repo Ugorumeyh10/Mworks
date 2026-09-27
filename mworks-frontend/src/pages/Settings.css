@@ -1,0 +1,146 @@
+.settings-card { margin-bottom: 16px; }
+.settings-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.settings-card-head .mk-sec-title { margin-bottom: 0; }
+
+.settings-saved {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+.settings-saved .icon { stroke: var(--accent-strong); }
+
+.set-field { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
+.set-field label { font-size: 13px; font-weight: 600; }
+.set-field input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--panel);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.set-field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+
+.set-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 10px 0 14px;
+}
+.set-note .icon { stroke: var(--muted); flex-shrink: 0; margin-top: 1px; }
+
+/* Roles */
+.set-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.set-toggle-row > span { display: flex; flex-direction: column; }
+.set-toggle-row strong { font-family: var(--font-display); font-size: 14px; }
+.set-toggle-row > span > span { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.set-switch {
+  width: 44px;
+  height: 25px;
+  border-radius: 999px;
+  background: var(--line);
+  border: none;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.set-switch::after {
+  content: '';
+  position: absolute;
+  top: 2.5px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.set-switch.on { background: var(--accent); }
+.set-switch.on::after { transform: translateX(19px); }
+.set-switch:hover { box-shadow: 0 0 0 4px var(--accent-ring); }
+
+.set-links { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.set-link-muted { font-size: 12.5px; color: var(--muted); }
+.set-link-muted em { font-style: normal; opacity: 0.75; }
+
+/* Identity */
+.set-checks { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.set-check { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.set-check .icon.done { stroke: var(--accent-strong); }
+.set-check .icon.pending { stroke: #8a6d1f; }
+
+/* Reputation */
+.set-rep { display: flex; gap: 12px; margin: 12px 0; }
+.set-rep-tile {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.set-rep-tile b { display: block; font-family: var(--font-display); font-size: 20px; }
+.set-rep-tile span { font-size: 11.5px; color: var(--muted); }
+.set-rep-break { border: 1px solid var(--line); border-radius: 10px; padding: 6px 14px; margin-bottom: 12px; }
+.set-rep-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.set-rep-row:last-child { border-bottom: none; }
+.set-rep-row span:last-child { color: var(--accent-strong); font-weight: 600; }
+
+/* Notification prefs */
+.set-pref-head, .set-pref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.set-pref-head {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-weight: 700;
+}
+.set-pref-cols { display: flex; gap: 34px; }
+.set-pref-head .set-pref-cols span { display: inline-flex; align-items: center; gap: 4px; }
+.set-pref-head .icon { stroke: var(--muted); }
+.set-pref-cols input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+.set-pref-row + button { margin-top: 14px; }
+
+@media (max-width: 560px) {
+  .set-pref-cols { gap: 20px; }
+  .set-rep { flex-direction: column; }
+}

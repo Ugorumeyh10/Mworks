@@ -1,0 +1,118 @@
+.listing-page { max-width: 640px; margin: 0 auto; padding-bottom: 40px; }
+
+.listing-private {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--gold-line);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.listing-private p { margin: 0; flex: 1; min-width: 200px; color: var(--text); }
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--muted); font-size: 13.5px; margin-bottom: 16px;
+}
+.back-link:hover { color: var(--text); }
+
+.listing-hero {
+  height: 240px; border-radius: 12px;
+  background:
+    linear-gradient(160deg, rgba(255, 248, 231, 0.85), rgba(201, 162, 39, 0.18)),
+    repeating-linear-gradient(45deg, #c9a22722 0 10px, #c45c2618 10px 20px, #1f4d3a14 20px 30px);
+  border: 1px solid var(--gold-line);
+  display: flex; flex-direction: column; gap: 10px;
+  align-items: center; justify-content: center;
+  color: var(--muted); font-size: 13px; margin-bottom: 18px;
+}
+.listing-hero .icon { width: 30px; height: 30px; stroke: var(--steel); }
+
+.listing-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.listing-top h1 { font-size: 24px; max-width: 400px; }
+.listing-price { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--gold-deep); }
+
+.listing-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.verified-chip { border-color: var(--brass); color: var(--brass); }
+
+.metrics-row { display: flex; gap: 12px; margin-bottom: 22px; }
+.metric-box {
+  flex: 1; background: var(--panel); border: 1px solid var(--line);
+  border-radius: 10px; text-align: center; padding: 16px 8px;
+}
+.metric-box b { display: block; font-family: var(--font-display); font-size: 22px; }
+.metric-box span { font-size: 11.5px; color: var(--muted); }
+
+.seller-card {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--panel); border: 1px solid var(--line);
+  padding: 14px; border-radius: 10px; margin-bottom: 24px;
+}
+.seller-link { font-family: var(--font-display); font-weight: 700; font-size: 14px; }
+.seller-link:hover { color: var(--accent-strong); text-decoration: underline; }
+.seller-sub { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.follow-btn {
+  margin-left: auto;
+  border: 1px solid var(--steel); color: var(--steel); background: transparent;
+  font-size: 12.5px; padding: 7px 14px; border-radius: 999px; font-weight: 600;
+}
+.follow-btn:hover {
+  border-color: var(--accent); color: var(--accent-strong); background: var(--accent-soft);
+}
+
+.sec-title { font-size: 14px; color: var(--muted); font-weight: 500; text-transform: none; margin: 22px 0 8px; }
+.body-text { font-size: 14.5px; line-height: 1.6; color: var(--text); margin: 0; }
+
+.vrow { display: flex; justify-content: space-between; padding: 9px 0; font-size: 13.5px; border-bottom: 1px solid var(--line); }
+.vrow .ok { color: var(--brass); font-weight: 600; }
+.vrow .bad { color: #9a3b33; font-weight: 600; }
+
+.review-row { padding: 10px 0; font-size: 13.5px; border-bottom: 1px solid var(--line); line-height: 1.5; }
+.stars { display: block; color: var(--brass); font-size: 12px; margin-top: 4px; }
+
+.buy-bar {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  margin-top: 28px; padding: 16px; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 12px;
+  position: sticky; bottom: 16px;
+}
+.buy-price { font-family: var(--font-display); font-size: 20px; font-weight: 800; }
+.buy-btn {
+  flex: 1; min-width: 180px; text-align: center;
+  background: var(--brass); color: var(--ink);
+  border: 1px solid var(--brass);
+  padding: 13px 18px; border-radius: 8px; font-size: 14px; font-weight: 700;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+}
+.buy-btn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 20px -6px var(--accent-ring);
+}
+.buy-btn:active { transform: translateY(1px); }
+.hire-btn {
+  background: transparent; color: var(--text);
+  border: 1px solid var(--line);
+  padding: 13px 18px; border-radius: 8px; font-size: 14px; font-weight: 700;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.hire-btn:hover {
+  border-color: var(--accent); background: var(--accent-soft); color: var(--accent-strong);
+}
+
+.listing-claim { margin-top: 28px; }
+.listing-claim textarea {
+  width: 100%;
+  margin: 8px 0 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--panel);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+}

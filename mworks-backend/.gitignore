@@ -1,0 +1,17 @@
+.env
+tests/_keys/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+secrets/
+*.pem
+.DS_Store
+dist/
+build/
+*.egg-info/

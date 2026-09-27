@@ -1,0 +1,24 @@
+.feed-page { max-width: 640px; margin: 0 auto; }
+
+.feed-tabs {
+  display: flex; gap: 22px; margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.feed-tab {
+  background: transparent; border: none; color: var(--muted);
+  font-size: 14px; font-weight: 500; padding: 0 0 12px;
+  position: relative;
+}
+.feed-tab:hover:not(.on) { color: var(--accent-strong); }
+.feed-tab.on { color: var(--text); font-weight: 700; }
+.feed-tab.on::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 2px; background: var(--brass);
+}
+.feed-note {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin: 0 0 16px;
+}
+.feed-list { display: flex; flex-direction: column; gap: 16px; }

@@ -1,0 +1,35 @@
+.jt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 22px;
+}
+.jt-tabs { display: flex; gap: 22px; }
+.jt-tab {
+  position: relative;
+  padding: 0 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.jt-tab:hover { color: var(--accent-strong); }
+.jt-tab.on { color: var(--text); font-weight: 700; }
+.jt-tab.on::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--brass);
+}
+.jt-actions { display: flex; gap: 8px; padding-bottom: 8px; }
+
+@media (max-width: 640px) {
+  .jt { border-bottom: none; }
+  .jt-tabs { order: 2; width: 100%; border-top: 1px solid var(--line); padding-top: 12px; }
+  .jt-actions { order: 1; }
+}

@@ -1,0 +1,87 @@
+.pf-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.pf-id { display: flex; gap: 16px; }
+.pf-avatar {
+  width: 64px;
+  height: 64px;
+  font-size: 24px;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+.pf-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pf-name-row h1 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+.pf-handle { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.pf-headline { font-size: 13.5px; color: var(--text); margin: 8px 0 10px; line-height: 1.5; }
+.pf-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px 14px;
+  flex-wrap: wrap;
+}
+.pf-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.pf-meta-item .icon { stroke: var(--muted); }
+.pf-actions { display: flex; gap: 10px; flex-shrink: 0; }
+
+.pf-tiles { grid-template-columns: repeat(5, 1fr); margin-top: 18px; }
+
+.pf-h2 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  margin: 26px 0 12px;
+}
+
+.pf-skills { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.pf-listings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.pf-reviews { padding: 6px 20px; }
+.pf-review { padding: 14px 0; border-bottom: 1px solid var(--line); }
+.pf-review:last-child { border-bottom: none; }
+.pf-review-top { display: flex; align-items: center; justify-content: space-between; }
+.pf-review-top strong { font-size: 13.5px; font-family: var(--font-display); }
+.pf-review-stars { color: var(--accent); font-size: 12px; letter-spacing: 1px; }
+.pf-review p { margin: 6px 0 4px; font-size: 13.5px; line-height: 1.55; }
+.pf-review-listing { font-size: 11.5px; color: var(--muted); }
+
+.pf-links { display: flex; flex-direction: column; gap: 8px; }
+.pf-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.pf-link .icon { stroke: var(--muted); }
+
+@media (max-width: 1000px) {
+  .pf-tiles { grid-template-columns: repeat(3, 1fr); }
+  .pf-listings { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .pf-tiles { grid-template-columns: 1fr 1fr; }
+  .pf-listings { grid-template-columns: 1fr; }
+}

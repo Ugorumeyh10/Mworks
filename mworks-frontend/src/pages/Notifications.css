@@ -1,0 +1,58 @@
+.nt-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.nt-filters .chip { cursor: pointer; }
+
+.nt-group { margin-bottom: 18px; }
+.nt-group-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 0 0 8px 2px;
+}
+
+.nt-list { padding: 4px 16px; }
+.nt-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.12s;
+}
+.nt-row:last-child { border-bottom: none; }
+.nt-row:hover { background: var(--panel-2); margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+
+.nt-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--panel-2);
+  color: var(--muted);
+}
+.nt-icon .icon { stroke: currentColor; }
+.nt-icon.verification { background: var(--accent-soft); color: var(--accent-strong); }
+.nt-icon.transaction { background: var(--panel-2); color: var(--text); }
+.nt-icon.dispute { background: #f7ecea; color: #9a3b33; }
+.nt-icon.review { background: var(--accent-soft); color: var(--accent-strong); }
+.nt-icon.job { background: var(--panel-2); color: var(--text); }
+.nt-icon.system { background: #faf4e4; color: #8a6d1f; }
+
+.nt-body { flex: 1; min-width: 0; }
+.nt-title { font-size: 13.5px; font-weight: 700; font-family: var(--font-display); }
+.nt-row.unread .nt-title { color: var(--text); }
+.nt-text { font-size: 12.5px; color: var(--muted); line-height: 1.5; margin: 2px 0 4px; }
+.nt-time { font-size: 11px; color: var(--muted); }
+
+.nt-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 6px;
+}

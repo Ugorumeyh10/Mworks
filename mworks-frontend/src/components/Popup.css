@@ -1,0 +1,93 @@
+.pop-root {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.pop-scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(23, 20, 12, 0.48);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  animation: pop-fade 0.22s ease both;
+}
+.pop-panel {
+  position: relative;
+  width: min(520px, 100%);
+  background: var(--paper);
+  border: 1px solid var(--gold-line);
+  border-radius: 18px;
+  box-shadow: 0 28px 64px -20px rgba(40, 28, 8, 0.35), 0 0 0 1px rgba(201, 162, 39, 0.12);
+  overflow: hidden;
+  animation: pop-rise 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.pop-panel.pop-lg { width: min(640px, 100%); }
+.pop-goldbar {
+  height: 6px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #C9A227 0 18px,
+      #C45C26 18px 28px,
+      #1F4D3A 28px 40px,
+      #2C2A6B 40px 50px,
+      #C9A227 50px 68px
+    );
+}
+.pop-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 22px 0;
+}
+.pop-head h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  font-optical-sizing: auto;
+}
+.pop-x {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pop-x:hover { color: var(--text); border-color: var(--gold); }
+.pop-body {
+  padding: 14px 22px 8px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+.pop-body p { margin: 0 0 10px; }
+.pop-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding: 12px 22px 22px;
+}
+
+@keyframes pop-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pop-rise {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop-scrim, .pop-panel { animation: none; }
+}
